@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/08 22:14:07 by rfelipe-          #+#    #+#              #
-#    Updated: 2022/07/08 22:14:09 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/07/08 22:47:55 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,16 +23,17 @@ OBJ_DIR = ./objs
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRC_DIR = ./src
-SRC = $(SRC_DIR)/philosophers.c
+SRC = $(SRC_DIR)/philosophers.c \
+	$(SRC_DIR)/utils.c
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo "Compiling project...\n"
 	@$(CC) $(OBJ) -o $(NAME) -pthread
 	@echo "Philosophers compiled!"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE)
-	@echo "Compiling project...\n"
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) -c $(FLAGS) -I$(INCLUDE_DIR) -o $@ $<
 
