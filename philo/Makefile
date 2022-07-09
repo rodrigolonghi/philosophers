@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/08 22:14:07 by rfelipe-          #+#    #+#              #
-#    Updated: 2022/07/08 22:47:55 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/07/09 00:56:32 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 SRC_DIR = ./src
 SRC = $(SRC_DIR)/philosophers.c \
-	$(SRC_DIR)/utils.c
+	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/philosophy.c \
+	$(SRC_DIR)/checker_utils.c
 
 all: $(NAME)
 

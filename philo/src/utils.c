@@ -6,11 +6,33 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:38:57 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/08 22:46:20 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/09 00:33:55 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../includes/philosophers.h>
+
+void	end_philosophy(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_of_philos)
+	{
+		pthread_mutex_destroy(&data->forks_mutex[i]);
+		i++;
+	}
+	free(data->philos);
+	free(data->forks_mutex);
+}
+
+long int	now(void)
+{
+	struct timeval	timeval;
+
+	gettimeofday(&timeval, NULL);
+	return ((long int)(timeval.tv_sec * 1000 + timeval.tv_usec / 1000));
+}
 
 int	ft_isdigit(int c)
 {
