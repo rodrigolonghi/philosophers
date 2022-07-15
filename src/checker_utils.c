@@ -6,11 +6,27 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 00:52:00 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/09 00:57:49 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:23:14 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../includes/philosophers.h>
+
+static void	check_death(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_of_philos && !data->need_stop)
+	{
+		if (data->philos[i].last_meal < now() - data->time_to_die)
+		{
+			print_status(data, now() - data->start_time, i + 1, "died");
+			data->need_stop = TRUE;
+		}
+		i++;
+	}
+}
 
 void	*check_end(void	*aux)
 {
@@ -19,9 +35,10 @@ void	*check_end(void	*aux)
 	t_data	*data;
 
 	data = aux;
-	if (data->must_eat != 0 && !data->need_stop)
+	while (!data->need_stop)
 	{
-		while (!data->need_stop)
+		check_death(data);
+		if (data->must_eat != 0)
 		{
 			i = 0;
 			count = 0;
@@ -31,7 +48,7 @@ void	*check_end(void	*aux)
 					count++;
 				i++;
 			}
-			if (count == data->must_eat)
+			if (count == data->num_of_philos)
 				data->need_stop = TRUE;
 		}
 	}

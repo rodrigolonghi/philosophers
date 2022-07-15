@@ -6,13 +6,13 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:13:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/09 00:58:26 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:23:40 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../includes/philosophers.h>
 
-static void	create_threads(t_data *data)
+static void	create_philos(t_data *data)
 {
 	int	i;
 
@@ -60,6 +60,7 @@ static void	initiate_data(char **argv, t_data *data)
 	data->need_stop = FALSE;
 	data->philos = malloc(data->num_of_philos * sizeof(t_philo));
 	data->forks_mutex = malloc(data->num_of_philos * sizeof(pthread_mutex_t));
+	pthread_mutex_init(&data->std_output, NULL);
 	initiate_philos(data);
 }
 
@@ -101,7 +102,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		initiate_data(argv, &data);
-		create_threads(&data);
+		create_philos(&data);
 		pthread_create(&data.checker, NULL, &check_end, &data);
 		i = 0;
 		while (i < data.num_of_philos)
