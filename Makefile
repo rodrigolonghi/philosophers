@@ -6,15 +6,15 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/08 22:14:07 by rfelipe-          #+#    #+#              #
-#    Updated: 2022/07/14 22:17:50 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/07/16 00:58:37 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-FLAGS = -g -Wall -Wextra -Werror
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --tool=memcheck -q ./philo
+FLAGS = -g -Wall -Wextra -Werror -pthread
+VALGRIND = valgrind --tool=helgrind -q ./philo
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/philosophers.h
@@ -33,7 +33,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compiling project...\n"
-	@$(CC) $(OBJ) -o $(NAME) -pthread
+	@$(CC) $(OBJ) -o $(NAME)
 	@echo "Philosophers compiled!"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDE)
@@ -50,7 +50,4 @@ fclean: clean
 
 re: fclean all
 
-valgrind: all
-	@$(VALGRIND)
-
-v: valgrind
+.PHONY:	all clean fclean re
