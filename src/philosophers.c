@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:13:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/15 01:23:40 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:55:59 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	initiate_philos(t_data *data)
 		data->philos[i].meals_consumed = 0;
 		data->philos[i].last_meal = now();
 		pthread_mutex_init(&data->forks_mutex[i], NULL);
+		pthread_mutex_init(&data->philos[i].last_meal_mutex, NULL);
+		pthread_mutex_init(&data->philos[i].meals_consumed_mutex, NULL);
 		data->philos[i].data = data;
 		i++;
 	}

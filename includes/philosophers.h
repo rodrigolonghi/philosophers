@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:13:53 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/14 22:25:17 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 21:51:03 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ typedef struct s_data	t_data;
 
 typedef struct s_philo
 {
-	int			id;
-	int			left_fork_id;
-	int			right_fork_id;
-	int			meals_consumed;
-	t_data		*data;
-	long int	last_meal;
-	pthread_t	thread;
+	int				id;
+	int				left_fork_id;
+	int				right_fork_id;
+	int				meals_consumed;
+	t_data			*data;
+	long int		last_meal;
+	pthread_t		thread;
+	pthread_mutex_t	meals_consumed_mutex;
+	pthread_mutex_t	last_meal_mutex;
 }	t_philo;
 
 struct s_data
