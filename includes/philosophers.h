@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:13:53 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/18 21:51:03 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:27:33 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct s_data
 	pthread_t		checker;
 	pthread_mutex_t	*forks_mutex;
 	pthread_mutex_t	std_output;
+	pthread_mutex_t	need_stop_mutex;
 };
 
 int			ft_atoi(char *str);
@@ -58,6 +59,7 @@ void		*start_philosophy(void *philo);
 void		*check_end(void	*aux);
 void		end_philosophy(t_data *data);
 long int	now(void);
+int			need_stop(t_data *data);
 void		print_status(t_data *data, long int timestamp,
 				int philo_id, char *str);
 

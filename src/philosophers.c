@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:13:56 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/18 21:55:59 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:24:10 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	initiate_data(char **argv, t_data *data)
 	data->philos = malloc(data->num_of_philos * sizeof(t_philo));
 	data->forks_mutex = malloc(data->num_of_philos * sizeof(pthread_mutex_t));
 	pthread_mutex_init(&data->std_output, NULL);
+	pthread_mutex_init(&data->need_stop_mutex, NULL);
 	initiate_philos(data);
 }
 

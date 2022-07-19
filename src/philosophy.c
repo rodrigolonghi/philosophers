@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 23:56:43 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:00:15 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:31:31 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ static void	just_one(t_philo *philo)
 	print_status(philo->data, now() - philo->data->start_time, philo->id + 1,
 		"died");
 	pthread_mutex_unlock(&philo->data->forks_mutex[philo->right_fork_id]);
+	pthread_mutex_lock(&philo->data->need_stop_mutex);
 	philo->data->need_stop = TRUE;
+	pthread_mutex_unlock(&philo->data->need_stop_mutex);
 }
 
 void	*start_philosophy(void *aux)
@@ -68,13 +70,13 @@ void	*start_philosophy(void *aux)
 		just_one(philo);
 	if (philo->id % 2 != 0)
 		usleep(5000);
-	while (!philo->data->need_stop)
+	while (!need_stop(philo->data))
 	{
-		if (!philo->data->need_stop)
+		if (!need_stop(philo->data))
 			philo_eat(philo);
-		if (!philo->data->need_stop)
+		if (!need_stop(philo->data))
 			philo_sleep(philo);
-		if (!philo->data->need_stop)
+		if (!need_stop(philo->data))
 			philo_think(philo);
 	}
 	return (NULL);
