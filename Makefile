@@ -6,7 +6,7 @@
 #    By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/08 22:14:07 by rfelipe-          #+#    #+#              #
-#    Updated: 2022/07/16 01:01:24 by rfelipe-         ###   ########.fr        #
+#    Updated: 2022/07/18 22:55:04 by rfelipe-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = philo
 
 CC = cc
 FLAGS = -g -Wall -Wextra -Werror
-VALGRIND = valgrind --tool=helgrind -q ./philo
 
 INCLUDE_DIR = ./includes
 INCLUDE = $(INCLUDE_DIR)/philosophers.h

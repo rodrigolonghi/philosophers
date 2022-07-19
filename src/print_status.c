@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:08:23 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:27:17 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:51:38 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	need_stop(t_data *data)
 void	print_status(t_data *data, long int timestamp, int philo_id, char *str)
 {
 	pthread_mutex_lock(&data->std_output);
-	if (!data->need_stop)
+	if (!need_stop(data))
 		printf("%6ld %3d %s\n", timestamp, philo_id, str);
 	pthread_mutex_unlock(&data->std_output);
 }

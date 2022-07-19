@@ -6,7 +6,7 @@
 /*   By: rfelipe- <rfelipe-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 23:56:43 by rfelipe-          #+#    #+#             */
-/*   Updated: 2022/07/18 22:31:31 by rfelipe-         ###   ########.fr       */
+/*   Updated: 2022/07/18 22:51:10 by rfelipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	philo_think(t_philo *philo)
 {
 	print_status(philo->data, now() - philo->data->start_time, philo->id + 1,
 		"is thinking");
+	usleep(500);
 }
 
 static void	philo_sleep(t_philo *philo)
